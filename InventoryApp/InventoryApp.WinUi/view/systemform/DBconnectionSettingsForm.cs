@@ -16,7 +16,12 @@ namespace InventoryApp.WinUi.view.systemform
         private void DBconnectionSettingsForm_Load(object sender, EventArgs e)
         {
             progressBarStatus.Visible = false;
-            connectionString = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["InventoryDBContext"].ConnectionString);
+            var constr = ConfigurationManager.ConnectionStrings["InventoryDBContext"].ConnectionString;
+            if (constr=="")
+            {
+                constr = "Data Source=<Server ip address or FQDN>;Initial Catalog=<Database Name>;Integrated Security=True;MultipleActiveResultSets=True";
+            }
+            connectionString = new SqlConnectionStringBuilder(constr);
             txtInitialCatalog.Text = connectionString.InitialCatalog;
             txtDataSource.Text = connectionString.DataSource;
             if (connectionString.IntegratedSecurity)
@@ -73,52 +78,68 @@ namespace InventoryApp.WinUi.view.systemform
         {
             btnSave.Visible = btnCancel.Visible = btnTestConnection.Visible =
                  txtDataSource.Enabled = txtInitialCatalog.Enabled=chkIntegratedSecurity.Enabled = value;
+           
             if (!connectionString.IntegratedSecurity)
                 txtUsername.Enabled = txtPassword.Enabled = lblPassword.Enabled = chkIntegratedSecurity.Checked =value ;
             progressBarStatus.Visible = !value;
         }
         private async void btnTestConnection_Click(object sender, EventArgs e)
         {
-            visiblecontrols(false);
-            try
+            if(txtDataSource.Text.Contains("<Server ip address or FQDN>") || txtDataSource.Text==string.Empty || txtInitialCatalog.Text==string.Empty || txtInitialCatalog.Text.Contains("<Database Name>"))
             {
-                if (await CheckServer() == true)
-                {
-                    MessageBox.Show("اتصال با موفقیت بر قرار شد", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("اتصال با سرور بر قرار نشد", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("اطلاعات وارد شده درست نمی باشد .", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch
+            else
             {
+                visiblecontrols(false);
+                try
+                {
+                    if (await CheckServer() == true)
+                    {
+                        MessageBox.Show("اتصال با موفقیت بر قرار شد", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("اتصال با سرور بر قرار نشد", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch
+                {
 
+                }
+                finally
+                {
+                    visiblecontrols(true);
+                }
             }
-            finally
-            {
-                visiblecontrols(true);
-            }
+            
 
 
 
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
+            if (txtDataSource.Text.Contains("<Server ip address or FQDN>") || txtDataSource.Text == string.Empty || txtInitialCatalog.Text == string.Empty || txtInitialCatalog.Text.Contains("<Database Name>"))
             {
-                SetData(txtInitialCatalog.Text);
-                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var connectionstrings = (ConnectionStringsSection)config.GetSection("connectionStrings");
-                connectionstrings.ConnectionStrings["InventoryDBContext"].ConnectionString = connectionString.ConnectionString;
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("connectionStrings");
-                DialogResult = DialogResult.OK;
-            }
-            catch
+                MessageBox.Show("اطلاعات وارد شده درست نمی باشد .", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }else
             {
-                MessageBox.Show("مشکل در ذخیره اطلاعات", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    SetData(txtInitialCatalog.Text);
+                    var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    var connectionstrings = (ConnectionStringsSection)config.GetSection("connectionStrings");
+                    connectionstrings.ConnectionStrings["InventoryDBContext"].ConnectionString = connectionString.ConnectionString;
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("connectionStrings");
+                    DialogResult = DialogResult.OK;
+                }
+                catch
+                {
+                    MessageBox.Show("مشکل در ذخیره اطلاعات", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            
         }
     }
 }

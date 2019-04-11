@@ -104,28 +104,28 @@
             this.txtInitialCatalog.Location = new System.Drawing.Point(115, 38);
             this.txtInitialCatalog.Name = "txtInitialCatalog";
             this.txtInitialCatalog.Size = new System.Drawing.Size(469, 23);
-            this.txtInitialCatalog.TabIndex = 0;
+            this.txtInitialCatalog.TabIndex = 1;
             // 
             // txtDataSource
             // 
             this.txtDataSource.Location = new System.Drawing.Point(115, 9);
             this.txtDataSource.Name = "txtDataSource";
             this.txtDataSource.Size = new System.Drawing.Size(469, 23);
-            this.txtDataSource.TabIndex = 1;
+            this.txtDataSource.TabIndex = 0;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(115, 67);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(469, 23);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(115, 96);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(469, 23);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 3;
             // 
             // chkIntegratedSecurity
             // 
