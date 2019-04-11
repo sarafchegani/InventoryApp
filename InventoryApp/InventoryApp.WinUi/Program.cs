@@ -16,7 +16,16 @@ namespace InventoryApp.WinUi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var splashForm = new view.systemform.SplashScreenForm();
+            if (splashForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new Form1());
+            }
+
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

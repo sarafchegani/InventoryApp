@@ -1,0 +1,5 @@
+F:\GitRepository\C#\InventoryApp\InventoryApp.Repositories\bin\Debug\InventoryApp.Repositories.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.Repositories\bin\Debug\InventoryApp.Repositories.pdb
+F:\GitRepository\C#\InventoryApp\InventoryApp.Repositories\obj\Debug\InventoryApp.Repositories.csprojResolveAssemblyReference.cache
+F:\GitRepository\C#\InventoryApp\InventoryApp.Repositories\obj\Debug\InventoryApp.Repositories.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.Repositories\obj\Debug\InventoryApp.Repositories.pdb
