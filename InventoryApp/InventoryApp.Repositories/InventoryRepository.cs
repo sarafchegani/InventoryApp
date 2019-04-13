@@ -68,15 +68,15 @@ namespace InventoryApp.Repositories
                 case InventorySearchType.All:
                     {
                         //search by address
-                        var _Inventory = contaxt.Inventories.Where(p => p.Address == value).ToList();
+                        var _Inventory = contaxt.Inventories.Where(p => p.Address.Contains(value)).ToList();
                         List.AddRange(_Inventory);
 
                         //search by title
-                        _Inventory = contaxt.Inventories.Where(p => p.Title == value).ToList();
+                        _Inventory = contaxt.Inventories.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_Inventory);
 
                         //search by Telephone
-                        _Inventory = contaxt.Inventories.Where(p => p.Telephone == value).ToList();
+                        _Inventory = contaxt.Inventories.Where(p => p.Telephone.Contains(value)).ToList();
                         List.AddRange(_Inventory);
 
                         //search by id
@@ -102,21 +102,21 @@ namespace InventoryApp.Repositories
                 case InventorySearchType.title:
                     {
                         //search by title
-                        var _Inventory = contaxt.Inventories.Where(p => p.Title == value).ToList();
+                        var _Inventory = contaxt.Inventories.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_Inventory);
                         return List;
                     }
                 case InventorySearchType.Address:
                     {
                         //search by address
-                        var _Inventory = contaxt.Inventories.Where(p => p.Address == value).ToList();
+                        var _Inventory = contaxt.Inventories.Where(p => p.Address.Contains(value)).ToList();
                         List.AddRange(_Inventory);
                         return List;
                     }
                 case InventorySearchType.Telephone:
                     {
                         //search by Telephone
-                        var _Inventory = contaxt.Inventories.Where(p => p.Telephone == value).ToList();
+                        var _Inventory = contaxt.Inventories.Where(p => p.Telephone.Contains(value)).ToList();
                         List.AddRange(_Inventory);
                         return List;
                     }

@@ -15,6 +15,8 @@ namespace InventoryApp.Repositories
             try
             {
                 var contaxt = new DataLayer.InventoryDBContext();
+                unit.CreatedByUserId = DatabaseTools.GetUserID;
+                unit.CreatedDate = DateTime.Now;
                 unit.Deleted = false;
                 contaxt.ProductUnits.Add(unit);
                 contaxt.SaveChanges();
@@ -73,13 +75,13 @@ namespace InventoryApp.Repositories
 
                 case ProductUnitSearchType.title:
                     {
-                        var _unit = contaxt.ProductUnits.Where(p => p.Title == value).ToList();
+                        var _unit = contaxt.ProductUnits.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_unit);
                         return List;
                     }
                 case ProductUnitSearchType.All:
                     {
-                        var _unit = contaxt.ProductUnits.Where(p => p.Title == value).ToList();
+                        var _unit = contaxt.ProductUnits.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_unit);
                         int id = 0;
                         if (int.TryParse(value, out id))
@@ -103,6 +105,8 @@ namespace InventoryApp.Repositories
                 var contaxt = new DataLayer.InventoryDBContext();
                 var _unit = contaxt.ProductUnits.FirstOrDefault(p => p.ProductUnitId == unit.ProductUnitId);
                 _unit = unit;
+                _unit.ChangedByUserId = DatabaseTools.GetUserID;
+                _unit.ChangedDate = DateTime.Now;
                 contaxt.SaveChanges();
                 return true;
             }

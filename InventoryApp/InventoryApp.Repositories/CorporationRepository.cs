@@ -66,15 +66,15 @@ namespace InventoryApp.Repositories
                 case CorporationSearchType.All:
                     {
                         //search by address
-                        var _corporation = contaxt.Corporations.Where(p => p.Address == value).ToList();
+                        var _corporation = contaxt.Corporations.Where(p => p.Address.Contains(value)).ToList();
                         List.AddRange(_corporation);
 
                         //search by title
-                        _corporation = contaxt.Corporations.Where(p => p.Title == value).ToList();
+                        _corporation = contaxt.Corporations.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_corporation);
 
                         //search by Telephone
-                        _corporation = contaxt.Corporations.Where(p => p.Telephone == value).ToList();
+                        _corporation = contaxt.Corporations.Where(p => p.Telephone.Contains(value)).ToList();
                         List.AddRange(_corporation);
 
                         //search by id
@@ -100,21 +100,21 @@ namespace InventoryApp.Repositories
                 case CorporationSearchType.Title:
                     {
                         //search by title
-                        var _corporation = contaxt.Corporations.Where(p => p.Title == value).ToList();
+                        var _corporation = contaxt.Corporations.Where(p => p.Title.Contains(value)).ToList();
                         List.AddRange(_corporation);
                         return List;
                     }
                 case CorporationSearchType.Address:
                     {
                         //search by address
-                        var _corporation = contaxt.Corporations.Where(p => p.Address == value).ToList();
+                        var _corporation = contaxt.Corporations.Where(p => p.Address.Contains(value)).ToList();
                         List.AddRange(_corporation);
                         return List;
                     }
                 case CorporationSearchType.Telephone:
                     {
                         //search by Telephone
-                        var _corporation = contaxt.Corporations.Where(p => p.Telephone == value).ToList();
+                        var _corporation = contaxt.Corporations.Where(p => p.Telephone.Contains(value)).ToList();
                         List.AddRange(_corporation);
                         return List;
                     }

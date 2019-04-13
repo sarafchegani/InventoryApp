@@ -83,7 +83,7 @@ namespace InventoryApp.Repositories
                     }
                 case UserSearchType.Username:
                     {
-                        var _user = contaxt.Users.Where(p => p.Username == value).ToList();
+                        var _user = contaxt.Users.Where(p => p.Username.Contains(value)).ToList();
                         List.AddRange(_user);
                         return List;
                     }
@@ -91,7 +91,7 @@ namespace InventoryApp.Repositories
                     {
                         var _user = contaxt.Users.Where(p => p.RegisterDate == DateTime.Parse(value)).ToList();
                         List.AddRange(_user);
-                        _user = contaxt.Users.Where(p => p.Username == value).ToList();
+                        _user = contaxt.Users.Where(p => p.Username.Contains(value)).ToList();
                         List.AddRange(_user);
                         int id = 0;
                         if (int.TryParse(value, out id))
