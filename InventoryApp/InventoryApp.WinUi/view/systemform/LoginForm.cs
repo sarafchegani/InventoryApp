@@ -45,7 +45,7 @@ namespace InventoryApp.WinUi.view.systemform
                     else
                     {
                         var identity = new GenericIdentity(relateduser.Username);
-                        var roles = contaxt.Roles.Where(p => p.Users == relateduser).Select(p => p.Title).ToArray();
+                       var roles= relateduser.Roles.Select(p => p.Title).ToArray();
                         var principal = new GenericPrincipal(identity, roles);
                         System.Threading.Thread.CurrentPrincipal = principal;
                         DialogResult = DialogResult.OK;

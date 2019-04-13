@@ -69,23 +69,9 @@ namespace InventoryApp.WinUi.view.systemform
                 DialogResult = DialogResult.Cancel;
 
             if (!await CheckExitDataBase())
-                DialogResult = DialogResult.Cancel;
-            if(!await CreateDatabase())
-            {
-                var Lf = new LoginForm();
-                this.Hide();
-                if (Lf.ShowDialog() == DialogResult.Cancel)
-                    DialogResult = DialogResult.Cancel;
-                else
-                    DialogResult = DialogResult.OK;
-            }
-            
+                await CreateDatabase();
 
-
-           
-
-
-
+            DialogResult = DialogResult.OK;
         }
     }
 }

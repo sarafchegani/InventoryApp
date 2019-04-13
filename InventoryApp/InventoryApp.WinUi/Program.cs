@@ -19,7 +19,14 @@ namespace InventoryApp.WinUi
             var splashForm = new view.systemform.SplashScreenForm();
             if (splashForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new Form1());
+                var Lf = new view.systemform.LoginForm();
+                if (Lf.ShowDialog() == DialogResult.OK)
+                    Application.Run(new Form1());
+                else
+                {
+                    Application.Exit();
+                }
+                    
             }
 
             else
