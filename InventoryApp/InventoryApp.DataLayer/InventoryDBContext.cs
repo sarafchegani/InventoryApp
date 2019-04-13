@@ -5,6 +5,10 @@ namespace InventoryApp.DataLayer
 {
     public class InventoryDBContext : DbContext
     {
+        public InventoryDBContext()
+        {
+            Database.Initialize();
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Corporation> Corporations { get; set; }

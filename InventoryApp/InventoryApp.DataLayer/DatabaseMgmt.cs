@@ -11,8 +11,17 @@ namespace InventoryApp.DataLayer
         public static async Task<bool> InitialDataBase()
         {
            return await Task<bool>.Run(() => {
-                var dbcontext = new DataLayer.InventoryDBContext();
-                return dbcontext.Database.CreateIfNotExists();
+               try
+               {
+                   var dbcontext = new DataLayer.InventoryDBContext();
+                   dbcontext.Database.Initialize(false);
+                   return true;
+               }
+               catch 
+               {
+                   return false;
+               }
+               
             });
         }
     }
