@@ -65,13 +65,24 @@ namespace InventoryApp.WinUi.view.systemform
         private async void SplashScreenForm_Load(object sender, EventArgs e)
         {
             lblstatus.Text = "در حال بررسی ارتباط با سرور  ...";
-            var ServerIsConnect = await CheckSqlConnection();
-            if (!ServerIsConnect)
+            if (!await CheckSqlConnection())
                 DialogResult = DialogResult.Cancel;
 
             if (!await CheckExitDataBase())
-                await CreateDatabase();
-            DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.Cancel;
+            if(!await CreateDatabase())
+            {
+                var Lf = new LoginForm();
+                this.Hide();
+                if (Lf.ShowDialog() == DialogResult.Cancel)
+                    DialogResult = DialogResult.Cancel;
+                else
+                    DialogResult = DialogResult.OK;
+            }
+            
+
+
+           
 
 
 

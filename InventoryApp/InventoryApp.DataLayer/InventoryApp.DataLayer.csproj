@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseMgmt.cs" />
+    <Compile Include="DatabaseTools.cs" />
     <Compile Include="InventoryDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

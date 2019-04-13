@@ -1,5 +1,7 @@
 ﻿using InventoryApp.Entities;
+using System;
 using System.Data.Entity;
+using System.Security.Cryptography;
 
 namespace InventoryApp.DataLayer
 {
@@ -7,7 +9,7 @@ namespace InventoryApp.DataLayer
     {
         public InventoryDBContext()
         {
-            Database.Initialize();
+            Database.SetInitializer(new DbInitializer());
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -48,6 +50,24 @@ namespace InventoryApp.DataLayer
     {
         protected override void Seed(InventoryDBContext context)
         {
+            var password = "admin";
+            var username = "admin";
+            var passwordsalt = Guid.NewGuid().ToString("N");
+            var saltedPassword = password + passwordsalt;
+            var saltedPasswordBytes = System.Text.Encoding.UTF8.GetBytes(saltedPassword);
+            var hashedPassword = Convert.ToBase64String(SHA512.Create().ComputeHash(saltedPasswordBytes));
+            var _userentity = new User
+            {
+                Username = username,
+                Password = hashedPassword,
+                PasswordSalt = passwordsalt,
+                RegisterDate = DateTime.Now,
+                Deleted = false
+            };
+            var contaxt = new InventoryDBContext();
+            contaxt.Users.Add(_userentity);
+            contaxt.SaveChanges();
+
             base.Seed(context);
         }
     }
