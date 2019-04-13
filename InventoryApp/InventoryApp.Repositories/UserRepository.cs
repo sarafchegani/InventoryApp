@@ -33,7 +33,7 @@ namespace InventoryApp.Repositories
                 var contaxt = new DataLayer.InventoryDBContext();
                 var user = contaxt.Users.FirstOrDefault(p => p.UserId == id);
                 user.Deleted = true;
-                user.DeletedByUserId = contaxt.Users.FirstOrDefault(p => p.Username == System.Threading.Thread.CurrentPrincipal.Identity.Name).UserId;
+                user.DeletedByUserId = DatabaseTools.GetUserID;
                 user.DeletedDate = DateTime.Now;
                 contaxt.SaveChanges();
                 return true;

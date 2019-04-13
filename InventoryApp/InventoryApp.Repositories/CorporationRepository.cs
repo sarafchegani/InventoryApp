@@ -9,11 +9,13 @@ namespace InventoryApp.Repositories
 {
     public class CorporationRepository : RepositortAbstracts.ICorporation
     {
-        public bool Add(InventoryApp.Entities.Corporation corporation)
+        public bool Add(Entities.Corporation corporation)
         {
             try
             {
                 var contaxt = new DataLayer.InventoryDBContext();
+                corporation.CreatedDate = DateTime.Now;
+                corporation.CreatedByUserId = DatabaseTools.GetUserID;
                 contaxt.Corporations.Add(corporation);
                 contaxt.SaveChanges();
                 return true;
@@ -32,6 +34,7 @@ namespace InventoryApp.Repositories
                 var corporation = contaxt.Corporations.Where(p => p.CorporationId == id).FirstOrDefault();
                 corporation.Deleted = true;
                 corporation.DeletedDate = DateTime.Now;
+                corporation.DeletedByUserId = DatabaseTools.GetUserID;
                 contaxt.SaveChanges();
                 return true;
             }
@@ -41,7 +44,7 @@ namespace InventoryApp.Repositories
             }
         }
 
-        public InventoryApp.Entities.Corporation Find(int id)
+        public Entities.Corporation Find(int id)
         {
             try
             {
@@ -54,9 +57,9 @@ namespace InventoryApp.Repositories
             }
         }
 
-        public ICollection<InventoryApp.Entities.Corporation> Search(CorporationSearchType SearchType, string value)
+        public ICollection<Entities.Corporation> Search(CorporationSearchType SearchType, string value)
         {
-            List<InventoryApp.Entities.Corporation> List = new List<Entities.Corporation>();
+            List<Entities.Corporation> List = new List<Entities.Corporation>();
             var contaxt = new DataLayer.InventoryDBContext();
             switch (SearchType)
             {
@@ -122,17 +125,15 @@ namespace InventoryApp.Repositories
             }
         }
 
-        public bool Update(InventoryApp.Entities.Corporation corporation)
+        public bool Update(Entities.Corporation corporation)
         {
             try
             {
                 var contaxt = new DataLayer.InventoryDBContext();
                 var _corporation = contaxt.Corporations.Where(p => p.CorporationId == corporation.CorporationId).FirstOrDefault();
-                _corporation.Address = corporation.Address;
-                _corporation.Description = corporation.Description;
-                _corporation.Title = corporation.Title;
-                _corporation.Telephone = corporation.Telephone;
+                _corporation = corporation;
                 _corporation.ChangedDate = DateTime.Now;
+                _corporation.ChangedByUserId = DatabaseTools.GetUserID;
                 contaxt.SaveChanges();
                 return true;
             }
