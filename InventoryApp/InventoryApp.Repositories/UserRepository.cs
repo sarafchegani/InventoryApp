@@ -15,6 +15,8 @@ namespace InventoryApp.Repositories
             try
             {
                 var contaxt = new DataLayer.InventoryDBContext();
+                user.RegisterDate = DateTime.Now;
+                user.Deleted = false;
                 contaxt.Users.Add(user);
                 contaxt.SaveChanges();
                 return true;

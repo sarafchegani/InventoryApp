@@ -10,7 +10,7 @@ namespace InventoryApp.Entities
         public string PasswordSalt { get; set; }
         public DateTime RegisterDate { get; set; }
         public bool Deleted { get; set; }
-        public DateTime DeletedDate { get; set; }
-        public int DeletedByUserId { get; set; }
+        public DateTime? DeletedDate { get; set; }
+        public int? DeletedByUserId { get; set; }
     }
 }

@@ -11,13 +11,13 @@ namespace InventoryApp.Entities
         //Accepet
         public virtual User AcceptedUser { get; set; }
         public bool Accepted { get; set; }
-        public DateTime AcceptedDate { get; set; }
+        public DateTime? AcceptedDate { get; set; }
         public int? AcceptedByUserId { get; set; }
 
         //Delete
         public virtual User DeletedUser { get; set; }
         public bool Deleted { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public int? DeletedByUserId { get; set; }
 
         //Created
@@ -27,7 +27,7 @@ namespace InventoryApp.Entities
 
         //Changed
         public virtual User ChangedUser { get; set; }
-        public DateTime ChangedDate { get; set; }
+        public DateTime? ChangedDate { get; set; }
         public int? ChangedByUserId { get; set; }
 
         public virtual Inventory Inv { get; set; }
