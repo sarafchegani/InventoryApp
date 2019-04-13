@@ -70,6 +70,12 @@
     <Compile Include="view\systemform\DBconnectionSettingsForm.designer.cs">
       <DependentUpon>DBconnectionSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\systemform\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\systemform\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\systemform\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="view\systemform\DBconnectionSettingsForm.resx">
       <DependentUpon>DBconnectionSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\systemform\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\systemform\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
@@ -109,6 +118,10 @@
     <ProjectReference Include="..\InventoryApp.DataLayer\InventoryApp.DataLayer.csproj">
       <Project>{ff92f457-61b0-4d74-9df2-ca35d1304d6d}</Project>
       <Name>InventoryApp.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.Entities\InventoryApp.Entities.csproj">
+      <Project>{1d86ee19-8bbb-481f-bdc6-49e3ce0dc274}</Project>
+      <Name>InventoryApp.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

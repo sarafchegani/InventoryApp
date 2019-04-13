@@ -43,4 +43,12 @@ namespace InventoryApp.DataLayer
             base.OnModelCreating(modelBuilder);
         }
     }
+
+    public class DbInitializer : CreateDatabaseIfNotExists<InventoryDBContext>
+    {
+        protected override void Seed(InventoryDBContext context)
+        {
+            base.Seed(context);
+        }
+    }
 }
