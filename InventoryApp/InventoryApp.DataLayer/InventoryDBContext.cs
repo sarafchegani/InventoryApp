@@ -32,7 +32,7 @@ namespace InventoryApp.DataLayer
             modelBuilder.Configurations.Add(Role.Map());
             modelBuilder.Configurations.Add(Corporation.Map());
             modelBuilder.Configurations.Add(Product.Map());
-            modelBuilder.Configurations.Add(ProductUnit.Map());
+            modelBuilder.Configurations.Add(Entities.ProductUnit.Map());
             modelBuilder.Configurations.Add(ProductCategory.Map());
             modelBuilder.Configurations.Add(InventoryInsType.Map());
             modelBuilder.Configurations.Add(InventoryInsHeader.Map());

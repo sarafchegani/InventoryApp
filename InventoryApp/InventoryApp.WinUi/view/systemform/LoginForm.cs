@@ -28,7 +28,7 @@ namespace InventoryApp.WinUi.view.systemform
             else
             {
                 var contaxt = new DataLayer.InventoryDBContext();
-                var relateduser = contaxt.Users.FirstOrDefault(u => u.Username.Equals(txtusername.Text));
+                var relateduser = contaxt.ProductUnit.FirstOrDefault(u => u.Username.Equals(txtusername.Text));
                 if (relateduser == null)
                 {
                     MessageBox.Show("نام کاربری وجود ندارد .", "پیام سیستم", MessageBoxButtons.OK, MessageBoxIcon.Warning);
