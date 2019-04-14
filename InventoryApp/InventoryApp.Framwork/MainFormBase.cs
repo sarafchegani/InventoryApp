@@ -23,10 +23,10 @@ namespace InventoryApp.Framwork
             get
             {
                 if (viewengine == null)
-                    viewengine = new ViewEngine();
+                    viewengine = new ViewEngine(TypesRegistry);
                 return viewengine;
             }
         }
-       
+        protected StructureMap.Registry TypesRegistry { get; set; }
     }
 }

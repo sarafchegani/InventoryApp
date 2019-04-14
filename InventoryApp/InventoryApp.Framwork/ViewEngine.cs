@@ -9,13 +9,21 @@ namespace InventoryApp.Framwork
 {
     public class ViewEngine
     {
-        Dictionary<string, Form> openForm = new Dictionary<string, Form>();
-        public T ViewInForm<T>(bool DisplayIsDialog = false) where T : ViewBase
+        private StructureMap.Registry TypesRegistry;
+        public ViewEngine(StructureMap.Registry TypesRegistry)
         {
-            var viewInstance = (ViewBase)Activator.CreateInstance<T>();
-            if (openForm.ContainsKey(viewInstance.ViewTitle))
+            this.TypesRegistry = TypesRegistry; 
+        }
+        Dictionary<string, Form> openForm = new Dictionary<string, Form>();
+        public T ViewInForm<T>(Action<T>initialzer=null, bool DisplayIsDialog = false) where T : ViewBase
+        {
+            var container = new StructureMap.Container(TypesRegistry);
+            var viewInstance = container.GetInstance<T>();
+            viewInstance.viewEngine = this;
+            initialzer?.Invoke(viewInstance);
+            if (openForm.ContainsKey(viewInstance.ViewIdentifier))
             {
-                var currentform = openForm[viewInstance.ViewTitle];
+                var currentform = openForm[viewInstance.ViewIdentifier];
                 currentform.Activate();
                 return (T)currentform.Controls.OfType<T>().First();
             }
@@ -30,7 +38,7 @@ namespace InventoryApp.Framwork
             form.Controls.Add(viewInstance);
             form.FormClosed += ((obj, e) => openForm.Remove(viewInstance.ViewTitle));
             viewInstance.Dock = DockStyle.Fill;
-            openForm.Add(viewInstance.ViewTitle, form);
+            openForm.Add(viewInstance.ViewIdentifier, form);
 
             if (DisplayIsDialog)
                 form.ShowDialog();
@@ -48,6 +56,8 @@ namespace InventoryApp.Framwork
                 {
                     viewBase.DialogResult = dialogResult.Value;
                     openForm[viewBase.ViewIdentifier].DialogResult = dialogResult.Value;
+                    if (!openForm[viewBase.ViewIdentifier].Modal)
+                        openForm[viewBase.ViewIdentifier].Close();
                 }
                 else
                     openForm[viewBase.ViewIdentifier].Close();

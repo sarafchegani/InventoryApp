@@ -26,7 +26,7 @@ namespace InventoryApp.WinUi
                 {
                     Application.Exit();
                 }
-                    
+
             }
 
             else

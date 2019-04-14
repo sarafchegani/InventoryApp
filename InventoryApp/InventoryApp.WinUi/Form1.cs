@@ -17,12 +17,25 @@ namespace InventoryApp.WinUi
     {
         public Form1()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            TypesRegistry = new IOC.TypesResgistry();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            viewEngine.ViewInForm<view.Corporation.Add>();
+            var result=viewEngine.ViewInForm<view.Corporation.Add>(null,true);
+            if (result.DialogResult == DialogResult.OK)
+            {
+                ICorporation corporation = new CorporationRepository();
+                if (corporation.Add(result.Entity))
+                {
+                    MessageBox.Show("شرکت با موفقیت ثبت شد", "پیام سیستم");
+                }
+                else
+                {
+                    MessageBox.Show("مشکل در ثبت شرکت به وجود آمد", "پیام سیستم");
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

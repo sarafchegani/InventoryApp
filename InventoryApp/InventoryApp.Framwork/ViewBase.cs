@@ -44,7 +44,7 @@ namespace InventoryApp.Framwork
         }
         protected void CloseView(DialogResult? dialogResult=null)
         {
-            viewEngine.CloseView(this);
+            viewEngine.CloseView(this,dialogResult);
         }
         public ViewEngine viewEngine { get; internal set; }
     }

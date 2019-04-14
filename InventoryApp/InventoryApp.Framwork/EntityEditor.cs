@@ -12,10 +12,20 @@ namespace InventoryApp.Framwork
     {
         public List<EntityEditorControl> createdControls = new List<EntityEditorControl>(); 
         public TEntity Entity { get; set; }
+        
         public TEntity EntityCopy;
         public EntityEditor()
         {
             Entity = new TEntity();
+            AddAction("تایید", btn => CloseView(DialogResult.OK));
+            AddAction("صرفنظر", btn => {
+                var entityProperty = typeof(TEntity).GetProperties();
+                CloseView(DialogResult.Cancel);
+                foreach (var property in entityProperty)
+                {
+                    property.SetValue(Entity, property.GetValue(EntityCopy));
+                }
+            });
             Load += (sender, e) =>
             {
                 EntityCopy = new TEntity();
