@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 
 namespace InventoryApp.DataLayer
 {
+    //*** */
     public class InventoryDBContext : DbContext
     {
         public InventoryDBContext()
