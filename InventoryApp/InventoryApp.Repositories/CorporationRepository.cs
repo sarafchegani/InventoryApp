@@ -9,11 +9,15 @@ namespace InventoryApp.Repositories
 {
     public class CorporationRepository : RepositortAbstracts.ICorporation
     {
+        private DataLayer.InventoryDBContext contaxt{get;set;}
+        public CorporationRepository()
+        {
+            contaxt = new DataLayer.InventoryDBContext();
+        }
         public bool Add(Entities.Corporation corporation)
         {
             try
             {
-                var contaxt = new DataLayer.InventoryDBContext();
                 corporation.CreatedDate = DateTime.Now;
                 corporation.CreatedByUserId = DatabaseTools.GetUserID;
                 contaxt.Corporations.Add(corporation);
@@ -26,11 +30,15 @@ namespace InventoryApp.Repositories
             }
         }
 
+        public int Count()
+        {
+            return contaxt.Corporations.Count();
+        }
+
         public bool Delete(int id)
         {
             try
             {
-                var contaxt = new DataLayer.InventoryDBContext();
                 var corporation = contaxt.Corporations.Where(p => p.CorporationId == id).FirstOrDefault();
                 corporation.Deleted = true;
                 corporation.DeletedDate = DateTime.Now;
@@ -48,7 +56,6 @@ namespace InventoryApp.Repositories
         {
             try
             {
-                var contaxt = new DataLayer.InventoryDBContext();
                 return contaxt.Corporations.Where(p => p.CorporationId == id).FirstOrDefault();
             }
             catch
@@ -60,7 +67,6 @@ namespace InventoryApp.Repositories
         public ICollection<Entities.Corporation> Search(CorporationSearchType SearchType, string value)
         {
             List<Entities.Corporation> List = new List<Entities.Corporation>();
-            var contaxt = new DataLayer.InventoryDBContext();
             switch (SearchType)
             {
                 case CorporationSearchType.All:
@@ -86,7 +92,7 @@ namespace InventoryApp.Repositories
                         }
                         return List;
                     }
-                case CorporationSearchType.CorporationId :
+                case CorporationSearchType.CorporationId:
                     {
                         //search by id
                         int id = 0;
@@ -129,7 +135,6 @@ namespace InventoryApp.Repositories
         {
             try
             {
-                var contaxt = new DataLayer.InventoryDBContext();
                 var _corporation = contaxt.Corporations.Where(p => p.CorporationId == corporation.CorporationId).FirstOrDefault();
                 _corporation = corporation;
                 _corporation.ChangedDate = DateTime.Now;

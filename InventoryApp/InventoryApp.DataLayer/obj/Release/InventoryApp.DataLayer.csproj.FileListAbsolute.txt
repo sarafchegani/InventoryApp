@@ -1,0 +1,12 @@
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\InventoryApp.DataLayer.dll.config
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\InventoryApp.DataLayer.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\InventoryApp.DataLayer.pdb
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\EntityFramework.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\InventoryApp.Entities.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\InventoryApp.Entities.pdb
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\EntityFramework.xml
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\obj\Release\InventoryApp.DataLayer.csprojResolveAssemblyReference.cache
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\obj\Release\InventoryApp.DataLayer.dll
+F:\GitRepository\C#\InventoryApp\InventoryApp.DataLayer\obj\Release\InventoryApp.DataLayer.pdb

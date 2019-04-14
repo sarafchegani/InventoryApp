@@ -14,6 +14,7 @@ namespace InventoryApp.RepositortAbstracts
         bool Delete(int id);
         Corporation Find(int id);
         ICollection<Corporation> Search(CorporationSearchType SearchType, string value);
+         int Count();
     }
     public enum CorporationSearchType
     {

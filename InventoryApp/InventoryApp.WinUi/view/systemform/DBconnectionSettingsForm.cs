@@ -8,6 +8,7 @@ namespace InventoryApp.WinUi.view.systemform
 {
     public partial class DBconnectionSettingsForm : Form
     {
+
         public DBconnectionSettingsForm()
         {
             InitializeComponent();
@@ -19,7 +20,8 @@ namespace InventoryApp.WinUi.view.systemform
             var constr = ConfigurationManager.ConnectionStrings["InventoryDBContext"].ConnectionString;
             if (constr=="")
             {
-                constr = "Data Source=<Server ip address or FQDN>;Initial Catalog=<Database Name>;Integrated Security=True;MultipleActiveResultSets=True";
+                //constr = "Data Source=<Server ip address or FQDN>;Initial Catalog=<Database Name>;Integrated Security=True;MultipleActiveResultSets=True";
+                constr = "Data Source=.;Initial Catalog=inventoryApp;Integrated Security=True;MultipleActiveResultSets=True";
             }
             connectionString = new SqlConnectionStringBuilder(constr);
             txtInitialCatalog.Text = connectionString.InitialCatalog;
