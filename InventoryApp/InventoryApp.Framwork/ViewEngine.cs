@@ -45,7 +45,10 @@ namespace InventoryApp.Framwork
             if (openForm.ContainsKey(viewBase.ViewIdentifier))
             {
                 if (dialogResult.HasValue)
+                {
+                    viewBase.DialogResult = dialogResult.Value;
                     openForm[viewBase.ViewIdentifier].DialogResult = dialogResult.Value;
+                }
                 else
                     openForm[viewBase.ViewIdentifier].Close();
                 openForm.Remove(viewBase.ViewIdentifier);

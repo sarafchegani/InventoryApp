@@ -16,7 +16,7 @@ namespace InventoryApp.Framwork
         {
             InitializeComponent();
         }
-       
+       public DialogResult DialogResult { get; set; }
         public string ViewTitle { get; set; }
 
         public virtual string ViewIdentifier
